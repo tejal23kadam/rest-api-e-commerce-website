@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+import IndexPage from './IndexPage';
 function Axio() {
 
     const [datas, Setdata] = useState([]);
@@ -28,6 +29,7 @@ function Axio() {
                     return <li> {i}</li>
                 })
             }
+            <IndexPage datas={datas}/>
         </div>
     )
 }

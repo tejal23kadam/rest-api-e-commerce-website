@@ -1,8 +1,11 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios';
 import './IndexPagesCss.css';
 import OwlCarousel from 'react-owl-carousel';
-function IndexPage() {
 
+function IndexPage() {
+    const [mensData, SetMensdata] = useState([]);
     const options = {
         margin: 10,
         responsiveClass: true,
@@ -19,18 +22,33 @@ function IndexPage() {
             400: {
                 items: 1,
             },
-            600: {
+            700: {
                 items: 2,
             },
-            700: {
-                items: 3,
-            },
+            1000:{
+                items:3,
+            }
         },
     };
 
+    const getProductList = async () => {
+        axios.get("https://fakestoreapi.com/products/category/men's%20clothing")
+            .then(function (response) {
+                // handle success
+                SetMensdata(response.data);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+    }
+
+    useEffect(() => {
+        getProductList()
+    }, [])
+
     return (
         <div>
-
             {/* ***** Preloader Start ***** --> */}
             {/* <div id="preloader">
                 <div class="jumper">
@@ -41,56 +59,6 @@ function IndexPage() {
             </div> */}
             {/* ***** Preloader End ***** --> */}
 
-
-            {/* <!-- ***** Header Area Start ***** --> */}
-            <header class="header-area header-sticky">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <nav class="main-nav">
-                                {/* <!-- ***** Logo Start ***** --> */}
-                                <a href="index.html" class="logo">
-                                    <img src={require('./images/logo.png')} class="img-fluid" />
-                                </a>
-                                {/* <!-- ***** Logo End ***** --> */}
-                                {/* <!-- ***** Menu Start ***** --> */}
-                                <ul class="nav">
-                                    <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-                                    <li class="scroll-to-section"><a href="#men">Men's</a></li>
-                                    <li class="scroll-to-section"><a href="#women">Women's</a></li>
-                                    <li class="scroll-to-section"><a href="#kids">Kid's</a></li>
-                                    <li class="submenu">
-                                        <a href="javascript:;">Pages</a>
-
-                                        <ul>
-                                            <li><a href="about.html">About Us</a></li>
-                                            <li><a href="products.html">Products</a></li>
-                                            <li><a href="single-product.html">Single Product</a></li>
-                                            <li><a href="contact.html">Contact Us</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="submenu">
-                                        <a href="javascript:;">Features</a>
-                                        <ul>
-                                            <li><a href="#">Features Page 1</a></li>
-                                            <li><a href="#">Features Page 2</a></li>
-                                            <li><a href="#">Features Page 3</a></li>
-                                            <li><a rel="nofollow" href="https://templatemo.com/page/4" target="_blank">Template Page 4</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="scroll-to-section"><a href="#explore">Explore</a></li>
-                                </ul>
-                                <a class='menu-trigger'>
-                                    <span>Menu</span>
-                                </a>
-                                {/* <!-- ***** Menu End ***** --> */}
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            {/* <!-- ***** Header Area End ***** --> */}
-
             {/* <!-- ***** Main Banner Area Start ***** --> */}
             <div class="main-banner" id="top">
                 <div class="container-fluid">
@@ -99,8 +67,8 @@ function IndexPage() {
                             <div class="left-content">
                                 <div class="thumb">
                                     <div class="inner-content">
-                                        <h4>We Are Hexashop</h4>
-                                        <span>Awesome, clean &amp; creative HTML5 Template</span>
+                                        <h4>Discover the new you.</h4>
+                                        <span>More Than Fashion</span>
                                         <div class="main-border-button">
                                             <a href="#">Purchase Now!</a>
                                         </div>
@@ -121,8 +89,6 @@ function IndexPage() {
                                                 </div>
                                                 <div class="hover-content">
                                                     <div class="inner">
-                                                        <h4>Women</h4>
-                                                        <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
                                                         <div class="main-border-button">
                                                             <a href="#">Discover More</a>
                                                         </div>
@@ -141,8 +107,6 @@ function IndexPage() {
                                                 </div>
                                                 <div class="hover-content">
                                                     <div class="inner">
-                                                        <h4>Men</h4>
-                                                        <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
                                                         <div class="main-border-button">
                                                             <a href="#">Discover More</a>
                                                         </div>
@@ -156,13 +120,11 @@ function IndexPage() {
                                         <div class="right-first-image">
                                             <div class="thumb">
                                                 <div class="inner-content">
-                                                    <h4>Kids</h4>
-                                                    <span>Best Clothes For Kids</span>
+                                                    <h4>Electronics</h4>
+                                                    <span>Best Deals ever!!</span>
                                                 </div>
                                                 <div class="hover-content">
                                                     <div class="inner">
-                                                        <h4>Kids</h4>
-                                                        <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
                                                         <div class="main-border-button">
                                                             <a href="#">Discover More</a>
                                                         </div>
@@ -176,13 +138,11 @@ function IndexPage() {
                                         <div class="right-first-image">
                                             <div class="thumb">
                                                 <div class="inner-content">
-                                                    <h4>Accessories</h4>
-                                                    <span>Best Trend Accessories</span>
+                                                    <h4>Jewellery</h4>
+                                                    <span>Best Trend Jewellery</span>
                                                 </div>
                                                 <div class="hover-content">
                                                     <div class="inner">
-                                                        <h4>Accessories</h4>
-                                                        <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
                                                         <div class="main-border-button">
                                                             <a href="#">Discover More</a>
                                                         </div>
@@ -207,6 +167,45 @@ function IndexPage() {
                         <div class="col-lg-6">
                             <div class="section-heading">
                                 <h2>Men's Latest</h2>
+                                <span>Details to details is what makes Hexashop different from the other themes.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <OwlCarousel className="owl-theme" {...options}>
+                                {  mensData.map((value, i) => (
+                                        <li key={i}>
+                                            <div class="item">
+                                                <div class="thumb">
+                                                    <div class="hover-content">
+                                                    </div>                                                    
+                                                    <img src={value.image} class="img-fluid" />
+                                                </div>
+                                                <div class="down-content">
+                                                    <h4>{value.title}</h4>
+                                                    <span>{value.price}</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    ))
+                                }
+                            </OwlCarousel>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {/* <!-- ***** Men Area Ends ***** --> */}
+
+            {/* <!-- ***** Women Area Starts ***** --> */}
+            <section class="section" id="women">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="section-heading">
+                                <h2>Women's Latest</h2>
                                 <span>Details to details is what makes Hexashop different from the other themes.</span>
                             </div>
                         </div>
@@ -276,123 +275,6 @@ function IndexPage() {
                     </div>
                 </div>
             </section>
-            {/* <!-- ***** Men Area Ends ***** --> */}
-
-            {/* <!-- ***** Women Area Starts ***** --> */}
-            <section class="section" id="women">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="section-heading">
-                                <h2>Women's Latest</h2>
-                                <span>Details to details is what makes Hexashop different from the other themes.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="women-item-carousel">
-                                <div class="owl-women-item owl-carousel">
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <div class="hover-content">
-                                                <ul>
-                                                    <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <img src={require('./images/women-01.jpg')} class="img-fluid" />
-                                        </div>
-                                        <div class="down-content">
-                                            <h4>New Green Jacket</h4>
-                                            <span>$75.00</span>
-                                            <ul class="stars">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <div class="hover-content">
-                                                <ul>
-                                                    <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <img src={require('./images/women-02.jpg')} class="img-fluid" />
-                                        </div>
-                                        <div class="down-content">
-                                            <h4>Classic Dress</h4>
-                                            <span>$45.00</span>
-                                            <ul class="stars">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <div class="hover-content">
-                                                <ul>
-                                                    <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <img src={require('./images/women-03.jpg')} class="img-fluid" />
-                                        </div>
-                                        <div class="down-content">
-                                            <h4>Spring Collection</h4>
-                                            <span>$130.00</span>
-                                            <ul class="stars">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <div class="hover-content">
-                                                <ul>
-                                                    <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <img src={require('./images/women-01.jpg')} class="img-fluid" />
-                                        </div>
-                                        <div class="down-content">
-                                            <h4>Classic Spring</h4>
-                                            <span>$120.00</span>
-                                            <ul class="stars">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
             {/* <!-- ***** Women Area Ends ***** --> */}
 
             {/* <!-- ***** Kids Area Starts ***** --> */}
@@ -410,102 +292,63 @@ function IndexPage() {
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="kid-item-carousel">
-                                <div class="owl-kid-item owl-carousel">
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <div class="hover-content">
-                                                <ul>
-                                                    <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <img src={require('./images/kid-01.jpg')} class="img-fluid" />
+                            <OwlCarousel className="owl-theme" {...options}>
+                                <div class="item">
+                                    <div class="thumb">
+                                        <div class="hover-content">
                                         </div>
-                                        <div class="down-content">
-                                            <h4>School Collection</h4>
-                                            <span>$80.00</span>
-                                            <ul class="stars">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
+                                        <img src={require('./images/men-02.jpg')} class="img-fluid" />
                                     </div>
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <div class="hover-content">
-                                                <ul>
-                                                    <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <img src={require('./images/kid-02.jpg')} class="img-fluid" />
-                                        </div>
-                                        <div class="down-content">
-                                            <h4>Summer Cap</h4>
-                                            <span>$12.00</span>
-                                            <ul class="stars">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <div class="hover-content">
-                                                <ul>
-                                                    <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <img src={require('./images/kid-03.jpg')} class="img-fluid" />
-                                        </div>
-                                        <div class="down-content">
-                                            <h4>Classic Kid</h4>
-                                            <span>$30.00</span>
-                                            <ul class="stars">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <div class="hover-content">
-                                                <ul>
-                                                    <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <img src={require('./images/kid-01.jpg')} class="img-fluid" />
-                                        </div>
-                                        <div class="down-content">
-                                            <h4>Classic Spring</h4>
-                                            <span>$120.00</span>
-                                            <ul class="stars">
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
+                                    <div class="down-content">
+                                        <h4>Air Force 1 X</h4>
+                                        <span>$90.00</span>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="item">
+                                    <div class="thumb">
+                                        <div class="hover-content">
+                                        </div>
+                                        <img src={require('./images/men-02.jpg')} class="img-fluid" />
+                                    </div>
+                                    <div class="down-content">
+                                        <h4>Air Force 1 X</h4>
+                                        <span>$90.00</span>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="thumb">
+                                        <div class="hover-content">
+                                        </div>
+                                        <img src={require('./images/men-03.jpg')} class="img-fluid" />
+                                    </div>
+                                    <div class="down-content">
+                                        <h4>Air Force 223 X</h4>
+                                        <span>$90.00</span>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="thumb">
+                                        <div class="hover-content">
+                                        </div>
+                                        <img src={require('./images/men-01.jpg')} class="img-fluid" />
+                                    </div>
+                                    <div class="down-content">
+                                        <h4>Air Force 221223 X</h4>
+                                        <span>$90.00</span>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="thumb">
+                                        <div class="hover-content">
+                                        </div>
+                                        <img src={require('./images/men-02.jpg')} class="img-fluid" />
+                                    </div>
+                                    <div class="down-content">
+                                        <h4>Air Force 21 X</h4>
+                                        <span>$90.00</span>
+                                    </div>
+                                </div>
+                            </OwlCarousel>
                         </div>
                     </div>
                 </div>
