@@ -73,9 +73,7 @@ reset
   line-height: 0;
   height: 0;
 }
-.App{
-  background-color: #E3E6E6;
-}
+
 .clearfix {
   display: inline-block;
 }
@@ -670,7 +668,7 @@ banner
 
 .main-banner {
   border-bottom: 3px dotted #eee;
-  padding-top: 50px;  
+  padding: 50px 0px 50px 0px;  
 }
 
 .main-banner .right-content .right-first-image {
@@ -1690,7 +1688,7 @@ responsive
   transition: all ease-in-out 0.3s;
   overflow-y: auto;
   z-index: 997;
-  border-right: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  
 }
 
 .header .profile-img img {
@@ -1809,7 +1807,7 @@ responsive
   transition: all ease-in-out 0.3s;
   overflow-y: auto;
   z-index: 997;
-  border-right: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  /* //border-right: 1px solid color-mix(in srgb, var(--default-color), transparent 90%); */
 }
 
 /*--------------------------------------------------------------
@@ -1823,12 +1821,19 @@ responsive
   padding: 0;
   z-index: 9997;
 }
-
+.img-hw{  
+  width:150px;
+}
 .navmenu ul {
   list-style: none;
-  padding: 0 0 20px 0;
+  padding: 0px 0px 20px 0px;
   margin: 0;
   text-align: center;
+}
+.navmenu ul li { 
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 18px;
 }
 
 .navmenu a,
@@ -1897,39 +1902,4 @@ responsive
   transform: rotate(180deg);
 }
 
-.navmenu .dropdown {
-  display: block;
-}
-
-.navmenu .dropdown a,
-.navmenu .dropdown a:focus {
-  color: --nav-dropdown-color;
-}
-
-.navmenu .dropdown a:hover,
-.navmenu .dropdown .active,
-.navmenu .dropdown .active:focus {
-  color: var(--nav-dropdown-hover-color);
-}
-
-.navmenu .dropdown ul {
-  position: static;
-  display: none;
-  z-index: 99;
-  padding: 5px 10px;
-  margin: 5px 10px;
-  background-color: var(--nav-dropdown-background-color);
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-  box-shadow: none;
-  transition: all 0.5s ease-in-out;
-}
-
-.navmenu .dropdown ul ul {
-  background-color: rgba(33, 37, 41, 0.1);
-}
-
-.navmenu .dropdown>.dropdown-active {
-  display: block;
-  background-color: rgba(33, 37, 41, 0.03);
-}
 
